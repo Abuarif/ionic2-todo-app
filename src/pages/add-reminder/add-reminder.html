@@ -1,0 +1,59 @@
+<!--
+    Generated template for the AddReminder page.
+
+    See http://ionicframework.com/docs/v2/components/#navigation for more info on
+    Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>Add Reminder</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only color="royal" (click)="createReminder()">
+                <ion-icon name="checkmark"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+    <ion-list>
+        <ion-item>
+            <ion-label floating>Name</ion-label>
+            <ion-input type="text" [(ngModel)]="reminder.name"></ion-input>
+        </ion-item>
+
+        <ion-item *ngIf="reminder.hasDuration">
+            <ion-label>Due Date</ion-label>
+            <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="reminder.endDate"></ion-datetime>
+        </ion-item>
+
+        <ion-item *ngIf="reminder.hasDuration">
+            <ion-label>Due Time</ion-label>
+            <ion-datetime displayFormat="hh:mm A" [(ngModel)]="reminder.endTime"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Duration</ion-label>
+            <ion-toggle [(ngModel)]="reminder.hasDuration"></ion-toggle>
+        </ion-item>
+
+        <ion-item>
+            <h2>Select Character</h2>
+
+            <img [src]="reminder.avatar" />
+
+            <ion-grid>
+                <ion-row *ngFor="let item of avatarRows">
+                    <ion-col *ngFor="let columnItem of item.value">
+                        <button (click)="updateAvatar(columnItem)" clear ion-button icon-only>
+                            <img [src]="columnItem">
+                        </button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-item>
+
+    </ion-list>
+</ion-content>

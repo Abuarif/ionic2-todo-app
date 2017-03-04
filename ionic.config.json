@@ -1,0 +1,8 @@
+{
+  "name": "ionic2-todo-app",
+  "app_id": "",
+  "v2": true,
+  "typescript": true,
+  "documentRoot": "src",
+  "watchPatterns": ["src/**/*", "!src/lib/**/*"]
+}

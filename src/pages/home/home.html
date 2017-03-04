@@ -1,0 +1,44 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            Ionic 2 Reminders
+        </ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only color="royal" (click)="addNewReminder()">
+                <ion-icon name="add"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <div *ngIf="!reminders">
+        <img src="assets/images/clock.png" />
+        <span>
+            You don't have any reminders created. 
+            Start by clicking on the add button.
+        </span>
+    </div>
+
+    <ion-list>
+        <ion-item class="text" *ngFor="let reminder of reminders" (click)="viewReminder(reminder)">
+            {{ reminder.name }}
+            <br>
+            <span *ngIf="!reminder.hasDuration">No due date set.</span>
+
+            <span *ngIf="reminder.hasDuration">
+                Due: {{ reminder.getEndDate() }}
+                <progress-bar
+                [avatar]="reminder.avatar"
+                [min]="0"
+                [max]="reminder.getTotalDays()"
+                [progress]="reminder.getLapsedDays()"
+                ></progress-bar>
+            </span>
+        </ion-item>
+    </ion-list>
+
+    <div *ngIf="reminders">
+        P/S: The number shown in the chat bubble is the remaining days left from the due date.
+    </div>
+</ion-content>
